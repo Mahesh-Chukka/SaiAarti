@@ -19,3 +19,5 @@ captures
 node_modules/
 # KMP / Compose Multiplatform caches
 composeApp/.kotlin/
+.cursor/
+
