@@ -16,6 +16,8 @@ koin-compose = "1.1.5"
 kotlin = "2.3.0"
 material3 = "1.10.0-alpha05"
 navigation = "2.9.2"
+okio = "3.9.0"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -38,6 +40,9 @@ compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-previ
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
