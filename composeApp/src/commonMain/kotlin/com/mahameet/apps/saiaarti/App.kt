@@ -8,7 +8,6 @@ import com.mahameet.apps.saiaarti.theme.AppTheme
 
 @Composable
 fun App() {
-    remember { initKoin(); Unit }
     AppTheme {
         NavGraph()
     }

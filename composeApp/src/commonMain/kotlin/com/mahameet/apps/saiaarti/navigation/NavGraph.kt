@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.mahameet.apps.saiaarti.feature.prayers.PrayersScreen
+import com.mahameet.apps.saiaarti.feature.prayers.presentation.PrayersScreen
 
 @Composable
 fun NavGraph() {
