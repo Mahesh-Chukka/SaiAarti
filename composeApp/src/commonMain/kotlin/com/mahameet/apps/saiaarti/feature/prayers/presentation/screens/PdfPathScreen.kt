@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mahameet.apps.saiaarti.feature.prayers.domain.model.Language
 import com.mahameet.apps.saiaarti.feature.prayers.domain.model.PrayerTime
+import com.mahameet.apps.saiaarti.pdf.PdfViewer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,10 +51,9 @@ fun PdfPathScreen(
                 text = "Local file path:",
                 style = MaterialTheme.typography.titleSmall
             )
-            Text(
-                text = path,
-                style = MaterialTheme.typography.bodySmall
-            )
+            if (!isLoading && error == null && path.isNotBlank()) {
+                PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())
+            }
         }
     }
 }
