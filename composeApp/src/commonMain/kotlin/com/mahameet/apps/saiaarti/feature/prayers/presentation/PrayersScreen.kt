@@ -19,7 +19,7 @@ fun PrayersScreen() {
         )
         PrayersStep.Time -> TimeScreen(
             language = state.selectedLanguage!!,
-            times = vm.prayerTimes(state.selectedLanguage!!),
+            times = vm.prayerTimes(state.selectedLanguage),
             onSelect = vm::selectTime,
             onBack = vm::back
         )
