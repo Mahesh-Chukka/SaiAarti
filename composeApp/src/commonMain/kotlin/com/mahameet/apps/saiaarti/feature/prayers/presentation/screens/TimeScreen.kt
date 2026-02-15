@@ -27,6 +27,7 @@ fun TimeScreen(
     onBack: () -> Unit
 ) {
     Scaffold(
+        containerColor = androidx.compose.ui.graphics.Color.Transparent,
         topBar = {
             TopAppBar(
                 title = { Text(language.nativeName) },
@@ -43,10 +44,11 @@ fun TimeScreen(
         ) {
             items(times) { time ->
                 val palette = tilePalette("time_${language.code}_${time.id}")
-
+                val title = language.timeLabel(time)
+                val subtitle = language.ritualLabel(time)
                 TileCard(
-                    title = localizedTimeLabel(language, time),
-                    subtitle = null,
+                    title = title,
+                    subtitle = subtitle,
                     leading = {
                         Icon(
                             imageVector = timeIcon(time),
@@ -68,56 +70,5 @@ private fun timeIcon(time: PrayerTime): ImageVector = when (time) {
     PrayerTime.AFTERNOON -> Icons.Filled.LightMode
     PrayerTime.EVENING -> Icons.Filled.WbTwilight
     PrayerTime.NIGHT -> Icons.Filled.DarkMode
-}
-
-fun localizedTimeLabel(lang: Language, time: PrayerTime): String = when (lang) {
-    Language.TELUGU -> when (time) {
-        PrayerTime.MORNING -> "ఉదయం"
-        PrayerTime.AFTERNOON -> "మధ్యాహ్నం"
-        PrayerTime.EVENING -> "సాయంత్రం"
-        PrayerTime.NIGHT -> "రాత్రి"
-    }
-    Language.HINDI -> when (time) {
-        PrayerTime.MORNING -> "सुबह"
-        PrayerTime.AFTERNOON -> "दोपहर"
-        PrayerTime.EVENING -> "शाम"
-        PrayerTime.NIGHT -> "रात"
-    }
-    Language.ENGLISH -> when (time) {
-        PrayerTime.MORNING -> "Morning"
-        PrayerTime.AFTERNOON -> "Afternoon"
-        PrayerTime.EVENING -> "Evening"
-        PrayerTime.NIGHT -> "Night"
-    }
-    Language.TAMIL -> when (time) {
-        PrayerTime.MORNING -> "காலை"
-        PrayerTime.AFTERNOON -> "மதியம்"
-        PrayerTime.EVENING -> "மாலை"
-        PrayerTime.NIGHT -> "இரவு"
-    }
-    Language.MARATHI -> when (time) {
-        PrayerTime.MORNING -> "सकाळ"
-        PrayerTime.AFTERNOON -> "दुपार"
-        PrayerTime.EVENING -> "संध्याकाळ"
-        PrayerTime.NIGHT -> "रात्र"
-    }
-    Language.MALAYALAM -> when (time) {
-        PrayerTime.MORNING -> "രാവിലെ"
-        PrayerTime.AFTERNOON -> "ഉച്ച"
-        PrayerTime.EVENING -> "വൈകുന്നേരം"
-        PrayerTime.NIGHT -> "രാത്രി"
-    }
-    Language.BENGALI -> when (time) {
-        PrayerTime.MORNING -> "সকাল"
-        PrayerTime.AFTERNOON -> "দুপুর"
-        PrayerTime.EVENING -> "সন্ধ্যা"
-        PrayerTime.NIGHT -> "রাত"
-    }
-    else -> when(time) {
-        PrayerTime.MORNING -> "সকাল"
-        PrayerTime.AFTERNOON -> "দুপুর"
-        PrayerTime.EVENING -> "সন্ধ্যা"
-        PrayerTime.NIGHT -> "রাত"
-    }
 }
 

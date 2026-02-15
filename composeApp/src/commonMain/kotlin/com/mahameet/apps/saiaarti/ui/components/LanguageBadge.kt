@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.contentColorFor
 
 @Composable
 fun LanguageBadge(
@@ -17,14 +18,17 @@ fun LanguageBadge(
     bg: Color,
     modifier: Modifier = Modifier
 ) {
+    val textColor = contentColorFor(bg)
+
     Box(
         modifier = modifier
-            .size(44.dp)
+            .size(48.dp)
             .background(bg, CircleShape),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
+            color = textColor,
             style = MaterialTheme.typography.titleMedium
         )
     }

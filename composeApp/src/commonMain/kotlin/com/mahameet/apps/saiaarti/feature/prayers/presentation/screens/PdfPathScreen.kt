@@ -37,7 +37,7 @@ fun PdfPathScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text("Language: ${language.nativeName}")
-            Text("Time: ${time.title}")
+            Text("Time: ${time.name}")
 
             if (isLoading) {
                 CircularProgressIndicator()

@@ -20,6 +20,7 @@ fun LanguageScreen(
     onSelect: (Language) -> Unit
 ) {
     Scaffold(
+        containerColor = androidx.compose.ui.graphics.Color.Transparent,
         topBar = { TopAppBar(title = { Text("Select Language") }) }
     ) { padding ->
         LazyColumn(
