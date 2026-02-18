@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-
+        com.mahameet.apps.saiaarti.version.androidAppContext = this
         initKoin(platformModules = listOf(platformModule(this)))
 
         setContent {
