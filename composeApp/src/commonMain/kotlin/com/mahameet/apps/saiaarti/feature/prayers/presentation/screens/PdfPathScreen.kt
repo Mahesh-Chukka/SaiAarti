@@ -1,5 +1,6 @@
 package com.mahameet.apps.saiaarti.feature.prayers.presentation.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -19,6 +20,7 @@ fun PdfPathScreen(
     error: String?,
     onBack: () -> Unit
 ) {
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -29,30 +31,37 @@ fun PdfPathScreen(
             )
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
+        Box(
+            Modifier
                 .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
                 .padding(padding)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Language: ${language.nativeName}")
-            Text("Time: ${time.name}")
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text("Language: ${language.nativeName}")
+                Text("Time: ${time.name}")
 
-            if (isLoading) {
-                CircularProgressIndicator()
-            }
+                if (isLoading) {
+                    CircularProgressIndicator()
+                }
 
-            error?.let {
-                Text(it, color = MaterialTheme.colorScheme.error)
-            }
+                error?.let {
+                    Text(it, color = MaterialTheme.colorScheme.error)
+                }
 
-            Text(
-                text = "Local file path:",
-                style = MaterialTheme.typography.titleSmall
-            )
-            if (!isLoading && error == null && path.isNotBlank()) {
-                PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())
+                Text(
+                    text = "Local file path:",
+                    style = MaterialTheme.typography.titleSmall
+                )
+                if (!isLoading && error == null && path.isNotBlank()) {
+                    PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())
+                }
             }
         }
     }

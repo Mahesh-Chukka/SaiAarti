@@ -2,6 +2,7 @@
 
 package com.mahameet.apps.saiaarti.feature.prayers.presentation.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,26 +21,32 @@ fun LanguageScreen(
     onSelect: (Language) -> Unit
 ) {
     Scaffold(
-        containerColor = androidx.compose.ui.graphics.Color.Transparent,
-        topBar = { TopAppBar(title = { Text("Select Language") }) }
+        containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
+        Box(
+            Modifier
                 .fillMaxSize()
-                .padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .background(MaterialTheme.colorScheme.background)
+                .padding(padding)
         ) {
-            items(languages) { lang ->
-                val palette = tilePalette("lang_${lang.code}")
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(languages) { lang ->
+                    val palette = tilePalette("lang_${lang.code}")
 
-                TileCard(
-                    title = lang.nativeName,
-                    subtitle = lang.englishName.takeIf { it != lang.nativeName },
-                    leading = { LanguageBadge(text = lang.badge, bg = palette.badge) },
-                    containerColor = palette.container,
-                    onClick = { onSelect(lang) }
-                )
+                    TileCard(
+                        title = lang.nativeName,
+                        subtitle = lang.englishName.takeIf { it != lang.nativeName },
+                        leading = { LanguageBadge(text = lang.badge, bg = palette.badge) },
+                        containerColor = palette.container,
+                        onClick = { onSelect(lang) }
+                    )
+                }
             }
         }
     }

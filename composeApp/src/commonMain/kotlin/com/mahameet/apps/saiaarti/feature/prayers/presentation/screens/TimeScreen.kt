@@ -1,5 +1,6 @@
 package com.mahameet.apps.saiaarti.feature.prayers.presentation.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,8 +27,9 @@ fun TimeScreen(
     onSelect: (PrayerTime) -> Unit,
     onBack: () -> Unit
 ) {
+
     Scaffold(
-        containerColor = androidx.compose.ui.graphics.Color.Transparent,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text(language.nativeName) },
@@ -35,31 +37,38 @@ fun TimeScreen(
             )
         }
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
+        Box(
+            Modifier
                 .fillMaxSize()
-                .padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .background(MaterialTheme.colorScheme.background)
+                .padding(padding)
         ) {
-            items(times) { time ->
-                val palette = tilePalette("time_${language.code}_${time.id}")
-                val title = language.timeLabel(time)
-                val subtitle = language.ritualLabel(time)
-                TileCard(
-                    title = title,
-                    subtitle = subtitle,
-                    leading = {
-                        Icon(
-                            imageVector = timeIcon(time),
-                            contentDescription = null,
-                            modifier = Modifier.size(32.dp),
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    },
-                    containerColor = palette.container,
-                    onClick = { onSelect(time) }
-                )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(times) { time ->
+                    val palette = tilePalette("time_${language.code}_${time.id}")
+                    val title = language.timeLabel(time)
+                    val subtitle = language.ritualLabel(time)
+                    TileCard(
+                        title = title,
+                        subtitle = subtitle,
+                        leading = {
+                            Icon(
+                                imageVector = timeIcon(time),
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        },
+                        containerColor = palette.container,
+                        onClick = { onSelect(time) }
+                    )
+                }
             }
         }
     }
