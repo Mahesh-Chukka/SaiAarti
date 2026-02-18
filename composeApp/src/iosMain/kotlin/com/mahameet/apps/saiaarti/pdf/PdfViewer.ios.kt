@@ -8,6 +8,7 @@ import platform.CoreGraphics.CGRectMake
 import platform.Foundation.NSURL
 import platform.PDFKit.PDFDocument
 import platform.PDFKit.PDFView
+import platform.UIKit.UIColor
 import platform.UIKit.UIView
 
 @OptIn(ExperimentalForeignApi::class)
@@ -20,6 +21,7 @@ actual fun PdfViewer(
         modifier = modifier,
         factory = {
             val pdfView = PDFView(frame = CGRectMake(0.0, 0.0, 0.0, 0.0))
+            pdfView.backgroundColor = UIColor.whiteColor
             pdfView.autoScales = true
 
             val url = NSURL.fileURLWithPath(filePath)

@@ -27,7 +27,6 @@ fun TimeScreen(
     onSelect: (PrayerTime) -> Unit,
     onBack: () -> Unit
 ) {
-
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         topBar = {
@@ -37,38 +36,33 @@ fun TimeScreen(
             )
         }
     ) { padding ->
-        Box(
-            Modifier
+        LazyColumn(
+            modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
-                .padding(padding)
+                .padding(padding),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(times) { time ->
-                    val palette = tilePalette("time_${language.code}_${time.id}")
-                    val title = language.timeLabel(time)
-                    val subtitle = language.ritualLabel(time)
-                    TileCard(
-                        title = title,
-                        subtitle = subtitle,
-                        leading = {
-                            Icon(
-                                imageVector = timeIcon(time),
-                                contentDescription = null,
-                                modifier = Modifier.size(32.dp),
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer
-                            )
-                        },
-                        containerColor = palette.container,
-                        onClick = { onSelect(time) }
-                    )
-                }
+            items(times) { time ->
+                val palette = tilePalette("time_${language.code}_${time.id}")
+                val title = language.timeLabel(time)
+                val subtitle = language.ritualLabel(time)
+
+                TileCard(
+                    title = title,
+                    subtitle = subtitle,
+                    leading = {
+                        Icon(
+                            imageVector = timeIcon(time),
+                            contentDescription = null,
+                            modifier = Modifier.size(32.dp),
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    },
+                    containerColor = palette.container,
+                    onClick = { onSelect(time) }
+                )
             }
         }
     }

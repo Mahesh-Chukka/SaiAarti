@@ -20,48 +20,34 @@ fun PdfPathScreen(
     error: String?,
     onBack: () -> Unit
 ) {
-
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopAppBar(
                 title = { Text("PDF") },
-                navigationIcon = {
-                    IconButton(onClick = onBack) { Text("←") }
-                }
+                navigationIcon = { IconButton(onClick = onBack) { Text("←") } }
             )
         }
     ) { padding ->
-        Box(
-            Modifier
+        Column(
+            modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
                 .padding(padding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Text("Language: ${language.nativeName}")
-                Text("Time: ${time.name}")
+            Text("Language: ${language.nativeName}")
+            Text("Time: ${time.name}")
 
-                if (isLoading) {
-                    CircularProgressIndicator()
-                }
+            if (isLoading) CircularProgressIndicator()
 
-                error?.let {
-                    Text(it, color = MaterialTheme.colorScheme.error)
-                }
+            error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
 
-                Text(
-                    text = "Local file path:",
-                    style = MaterialTheme.typography.titleSmall
-                )
-                if (!isLoading && error == null && path.isNotBlank()) {
-                    PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())
-                }
+            Text("Local file path:", style = MaterialTheme.typography.titleSmall)
+
+            if (!isLoading && error == null && path.isNotBlank()) {
+                PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())
             }
         }
     }
