@@ -14,6 +14,8 @@ import com.mahameet.apps.saiaarti.feature.prayers.domain.model.Language
 import com.mahameet.apps.saiaarti.theme.tilePalette
 import com.mahameet.apps.saiaarti.ui.components.LanguageBadge
 import com.mahameet.apps.saiaarti.ui.components.TileCard
+import com.mahameet.apps.saiaarti.ui.components.glass.GlassContainer
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LanguageScreen(
@@ -38,13 +40,17 @@ fun LanguageScreen(
         ) {
             items(languages) { lang ->
                 val palette = tilePalette("lang_${lang.code}")
-                TileCard(
-                    title = lang.nativeName,
-                    subtitle = lang.englishName.takeIf { it != lang.nativeName },
-                    leading = { LanguageBadge(text = lang.badge, bg = palette.badge) },
-                    containerColor = palette.container,
-                    onClick = { onSelect(lang) }
-                )
+                GlassContainer(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    TileCard(
+                        title = lang.nativeName,
+                        subtitle = lang.englishName.takeIf { it != lang.nativeName },
+                        leading = { LanguageBadge(text = lang.badge, bg = palette.badge) },
+                        containerColor = palette.container,
+                        onClick = { onSelect(lang) }
+                    )
+                }
             }
         }
     }

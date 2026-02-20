@@ -10,7 +10,6 @@ enum class Language(
     HINDI("hi", "हिन्दी", "Hindi", "हि"),
     ENGLISH("en", "English", "English", "EN"),
     TAMIL("ta", "தமிழ்", "Tamil", "த"),
-    MARATHI("mr", "मराठी", "Marathi", "म"),
     MALAYALAM("ml", "മലയാളം", "Malayalam", "മ"),
     BENGALI("bn", "বাংলা", "Bengali", "বা"),
 
@@ -42,12 +41,6 @@ enum class Language(
             PrayerTime.AFTERNOON -> "மதியம்"
             PrayerTime.EVENING -> "மாலை"
             PrayerTime.NIGHT -> "இரவு"
-        }
-        Language.MARATHI -> when (time) {
-            PrayerTime.MORNING -> "सकाळ"
-            PrayerTime.AFTERNOON -> "दुपार"
-            PrayerTime.EVENING -> "संध्याकाळ"
-            PrayerTime.NIGHT -> "रात्र"
         }
         Language.MALAYALAM -> when (time) {
             PrayerTime.MORNING -> "രാവിലെ"
@@ -105,12 +98,6 @@ enum class Language(
             PrayerTime.AFTERNOON -> "மத்யான்"
             PrayerTime.EVENING -> "தூப்"
             PrayerTime.NIGHT -> "ஷேஜ்"
-        }
-        Language.MARATHI -> when (time) {
-            PrayerTime.MORNING -> "काकड"
-            PrayerTime.AFTERNOON -> "मध्याण"
-            PrayerTime.EVENING -> "धूप"
-            PrayerTime.NIGHT -> "शेज"
         }
         Language.MALAYALAM -> when (time) {
             PrayerTime.MORNING -> "കാകഡ്"

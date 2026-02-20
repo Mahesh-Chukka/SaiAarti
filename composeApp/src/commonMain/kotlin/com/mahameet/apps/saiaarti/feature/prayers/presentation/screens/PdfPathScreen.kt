@@ -37,14 +37,11 @@ fun PdfPathScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Language: ${language.nativeName}")
-            Text("Time: ${time.name}")
+            Text("${time.ritualName} Aarti")
 
             if (isLoading) CircularProgressIndicator()
 
             error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
-
-            Text("Local file path:", style = MaterialTheme.typography.titleSmall)
 
             if (!isLoading && error == null && path.isNotBlank()) {
                 PdfViewer(filePath = path, modifier = Modifier.fillMaxSize())

@@ -18,6 +18,7 @@ import com.mahameet.apps.saiaarti.feature.prayers.domain.model.Language
 import com.mahameet.apps.saiaarti.feature.prayers.domain.model.PrayerTime
 import com.mahameet.apps.saiaarti.theme.tilePalette
 import com.mahameet.apps.saiaarti.ui.components.TileCard
+import com.mahameet.apps.saiaarti.ui.components.glass.GlassContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -48,21 +49,24 @@ fun TimeScreen(
                 val palette = tilePalette("time_${language.code}_${time.id}")
                 val title = language.timeLabel(time)
                 val subtitle = language.ritualLabel(time)
-
-                TileCard(
-                    title = title,
-                    subtitle = subtitle,
-                    leading = {
-                        Icon(
-                            imageVector = timeIcon(time),
-                            contentDescription = null,
-                            modifier = Modifier.size(32.dp),
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    },
-                    containerColor = palette.container,
-                    onClick = { onSelect(time) }
-                )
+                GlassContainer(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    TileCard(
+                        title = title,
+                        subtitle = subtitle,
+                        leading = {
+                            Icon(
+                                imageVector = timeIcon(time),
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        },
+                        containerColor = palette.container,
+                        onClick = { onSelect(time) }
+                    )
+                }
             }
         }
     }
