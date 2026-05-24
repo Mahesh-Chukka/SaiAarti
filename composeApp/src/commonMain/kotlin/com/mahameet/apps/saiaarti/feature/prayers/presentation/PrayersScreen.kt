@@ -8,14 +8,15 @@ import com.mahameet.apps.saiaarti.feature.prayers.presentation.screens.TimeScree
 import org.koin.compose.koinInject
 
 @Composable
-fun PrayersScreen() {
+fun PrayersScreen(onInfoClick: () -> Unit = {}) {
     val vm = koinInject<PrayersViewModel>()
     val state = vm.state.collectAsState().value
 
     when (state.step) {
         PrayersStep.Language -> LanguageScreen(
             languages = vm.languages,
-            onSelect = vm::selectLanguage
+            onSelect = vm::selectLanguage,
+            onInfoClick = onInfoClick
         )
         PrayersStep.Time -> TimeScreen(
             language = state.selectedLanguage!!,
